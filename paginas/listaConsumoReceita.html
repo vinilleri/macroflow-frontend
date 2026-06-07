@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico Consumo Receitas</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <h2>Histórico de Consumo de Receitas</h2>
+    <table>
+        <tbody id="tabela-consumo"></tbody>
+    </table>
+    <a href="receitas.html">Voltar</a>
+    <script src="../script/api.js"></script>
+    <script src="../script/consumoReceita.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", listarConsumoReceita);
+    </script>
+</body>
+</html>

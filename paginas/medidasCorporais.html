@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Medidas Corporais</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Medidas Corporais</h2>
+
+    <h3>Medidas Atuais</h3>
+    <p>Peso: <span id="peso"></span></p>
+    <p>Altura: <span id="altura"></span></p>
+    <p>Sexo: <span id="sexo"></span></p>
+    <p>Data de Nascimento: <span id="dataNascimentoTexto"></span></p>
+    <p>% Gordura: <span id="percentualGordura"></span></p>
+    <p>Cintura: <span id="circuferenciaCintura"></span></p>
+
+    <h3>Registrar Medidas</h3>
+    <form onsubmit="salvarDados(event)">
+        <input type="number" step="0.01" id="peso" placeholder="Peso (kg)" required>
+        <input type="number" step="0.01" id="altura" placeholder="Altura (cm)" required>
+        <select id="sexo">
+            <option value="MASCULINO">Masculino</option>
+            <option value="FEMININO">Feminino</option>
+        </select>
+        <input type="date" id="dataNascimento" required>
+        <input type="number" step="0.01" id="percentualGordura" placeholder="% Gordura (opcional)">
+        <input type="number" step="0.01" id="circuferenciaCintura" placeholder="Cintura cm (opcional)">
+        <button type="submit">Salvar</button>
+    </form>
+
+    <h3>Histórico por Período</h3>
+    <input type="date" id="dataInicio">
+    <input type="date" id="dataFinal">
+    <button onclick="listarMedidasPorPeriodo()">Listar</button>
+    <button onclick="gerarGraficoPeso()">Gerar Gráfico de Peso</button>
+    <table>
+        <tbody id="tabelaMedidas"></tbody>
+    </table>
+    <canvas id="graficoPeso"></canvas>
+
+    <br>
+    <a href="comidas.html">Voltar</a>
+    <script src="../script/api.js"></script>
+    <script src="../script/medidasCorporais.js"></script>
+</body>
+</html>

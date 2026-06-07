@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Consumo do Dia</title>
+    <link rel="stylesheet" href="../style/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>Consumo do Dia</h2>
+    <p>Calorias: <span id="caloriasDia"></span></p>
+    <p>Proteínas: <span id="proteinasDia"></span></p>
+    <p>Carboidrato: <span id="carboidratoDia"></span></p>
+    <p>Gordura: <span id="gorduraDia"></span></p>
+
+    <h3>Gráfico por Período</h3>
+    <input type="date" id="dataInicio">
+    <input type="date" id="dataFim">
+    <button onclick="graficoPeriodo()">Gerar Gráfico</button>
+    <canvas id="graficoPeriodo"></canvas>
+
+    <br>
+    <a href="comidas.html">Voltar</a>
+    <script src="../script/api.js"></script>
+    <script src="../script/consumo.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", consumoDia);
+    </script>
+</body>
+</html>

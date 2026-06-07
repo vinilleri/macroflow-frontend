@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+input, select, button {
+    padding: 8px;
+    font-size: 14px;
+}
+
+button {
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+canvas {
+    max-width: 400px;
+    margin-top: 20px;
+}

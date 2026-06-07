@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Consumo</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+
+<h2>Registrar Consumo</h2>
+
+<form id="formConsumo">
+
+    <input type="hidden" id="idItem">
+    <input type="hidden" id="tipo">
+
+    <label>Nome</label>
+    <input type="text" id="nome" required>
+
+    <label>Quantidade</label>
+    <input type="number"
+           id="quantidade"
+           step="0.01"
+           required>
+
+    <label>Valor Base (g/ml/unidade)</label>
+    <input type="number"
+           id="valor"
+           step="0.01">
+
+    <button type="submit">
+        Consumir
+    </button>
+
+</form>
+
+<br>
+
+<a href="consumoDia.html">
+    Voltar
+</a>
+
+<script src="../script/api.js"></script>
+<script src="../script/consumo.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById("idItem").value =
+        params.get("id");
+
+    document.getElementById("tipo").value =
+        params.get("tipo");
+
+    document.getElementById("nome").value =
+        params.get("nome") || "";
+
+    const tipo = params.get("tipo");
+
+    if (tipo === "RECEITA") {
+        document.getElementById("valor")
+            .parentElement
+            .style.display = "none";
+    }
+
+});
+
+document
+    .getElementById("formConsumo")
+    .addEventListener("submit", consumir);
+
+</script>
+
+</body>
+</html>
