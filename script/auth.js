@@ -56,6 +56,15 @@ async function validarLogin(event) {
     }
 }
 
+function mensagem(){
+    const mensagem = sessionStorage.getItem("mensagemLogin");
+
+if (mensagem) {
+    document.getElementById("mensagem").textContent = mensagem;
+    sessionStorage.removeItem("mensagemLogin");
+}
+}
+document.addEventListener("DOMContentLoaded", mensagem);
 async function logout() {
     try {
         await fetch(`${API_URL}/usuario/deslogar`, {
