@@ -4,7 +4,15 @@ async function listarTipoObjetivo() {
     });
     const data = await response.json();
     const select = document.getElementById("tipoObjetivo");
+    const selectEdit = document.getElementById("tipoObjetivoEdit");
     select.innerHTML = "";
+    selectEdit.innerHTML = "";
+    data.forEach(tipo => {
+        const optionEdit = document.createElement("option");
+        optionEdit.value = tipo.id;
+        optionEdit.textContent = tipo.tipo;
+        selectEdit.appendChild(optionEdit);
+    });
     data.forEach(tipo => {
         const option = document.createElement("option");
         option.value = tipo.id;
@@ -21,6 +29,10 @@ async function salvarDados(event) {
     let dataFim;
     if (document.getElementById("dataFinal").value) {
         dataFim = document.getElementById("dataFinal").value;
+
+        const [ano, mes, dia] = dataFim.split("-");
+
+       dataFim = `${dia}/${mes}/${ano}`;
     }
     const tipoObjetivo = document.getElementById("tipoObjetivo").value;
 
@@ -55,7 +67,11 @@ async function editarObjetivo(event) {
 
     let dataFim;
     if (document.getElementById("dataFinal").value) {
-        dataFim = document.getElementById("dataFinal").value;
+         dataFim = document.getElementById("dataFinal").value;
+
+        const [ano, mes, dia] = dataFim.split("-");
+
+       dataFim = `${dia}/${mes}/${ano}`;
     }
 
     const objetivo = await objetivoAtual();
@@ -67,7 +83,7 @@ async function editarObjetivo(event) {
 
     const dados = {
         dataFim: dataFim,
-        tipoObjetivoId: document.getElementById("tipoObjetivo").value
+        tipoObjetivoId: document.getElementById("tipoObjetivoEdit").value
     };
     try {
         const response = await fetch(`${API_URL}/objetivo/${objetivo.id}`, {

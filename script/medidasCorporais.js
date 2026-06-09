@@ -175,7 +175,7 @@ async function listarMedidasPorPeriodo() {
         medidas.forEach(medida => {
             linhas += `
                 <tr>
-                    <td>${formatarDataParaBr(medida.data)}</td>
+                    <td>${medida.data}</td>
                     <td>${medida.peso}</td>
                     <td>${medida.altura}</td>
                     <td>${medida.sexo}</td>
@@ -217,8 +217,8 @@ async function gerarGraficoPeso() {
 
         const medidas = await response.json();
 
-        const labels = medidas.map(m => formatarDataParaBr(m.data));
-        const pesos = medidas.map(m => Number(m.peso));
+        const labels = medidas.map(m => m.data);
+        const pesos = medidas.map(m => m.peso);
 
         const canvas = document.getElementById("graficoPeso");
         const graficoExistente = Chart.getChart(canvas);

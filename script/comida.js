@@ -26,6 +26,14 @@ async function unidades(){
 }
 
 unidades();
+
+const imagensIcones = {
+         ARROZ: "🍚",
+        CARNE: "🍗",
+        BEBIDA: "🥤",
+        GENERICO: "📦",
+        SALADA: "🥗"
+};
 async function icones(){
     try{
         const response = await fetch(`${API_URL}/icone`, {
@@ -42,9 +50,9 @@ async function icones(){
     }
         data.forEach(icone => {
             const optionIcone = document.createElement("option");
-
+            const imagem = imagensIcones[icone.toUpperCase()] || "📦";
             optionIcone.value = icone;
-            optionIcone.textContent = icone;
+            optionIcone.textContent = `${imagem} ${icone}`;
 
             select.appendChild(optionIcone);
         });
@@ -181,12 +189,12 @@ async function listarComidas() {
 
         let linhas = `
             <tr>
+                <th>Ícone</th>
                 <th>Nome</th>
                 <th>Calorias</th>
                 <th>Proteínas</th>
                 <th>Carboidratos</th>
                 <th>Gorduras</th>
-                <th>Ícone</th>
                 <th>Valor</th>
                 <th>Unidade</th>
                 <th>Ações</th>
@@ -205,15 +213,15 @@ async function listarComidas() {
             const unidadeData = await responseUnidade.json();
 
             const podeEditar = comida.origem === "USUARIO";
-
+            const imagem = imagensIcones[comida.icone.toUpperCase()] || "📦";
             linhas += `
                 <tr>
+                     <td>${imagem}</td>
                     <td>${comida.nome}</td>
                     <td>${comida.calorias}</td>
                     <td>${comida.proteinas}</td>
                     <td>${comida.carboidrato}</td>
                     <td>${comida.gordura}</td>
-                    <td>${comida.icone}</td>
                     <td>${comida.valor}</td>
                     <td>${unidadeData.sigla}</td>
                     <td>

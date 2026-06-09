@@ -44,7 +44,7 @@ async function graficoPeriodo() {
                     data.proteinas,
                     data.carboidrato,
                     data.gordura
-                ]
+                ],
             }]
         }
     });

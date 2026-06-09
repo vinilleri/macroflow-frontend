@@ -83,7 +83,7 @@ async function salvarDadosMeta(event) {
         }
 
     } catch (err) {
-        console.error(err);
+        console.error(err); 
     }
 }
 
@@ -91,9 +91,10 @@ function metaAtual() {
     fetch(`${API_URL}/meta`, { headers: getAuthHeaders() })
         .then(r => r.json())
         .then(data => {
+            console.log(data.proteinas);
             document.getElementById("calorias").textContent = data.calorias;
             document.getElementById("carboidrato").textContent = data.carboidrato;
-            document.getElementById("proteina").textContent = data.proteina;
+            document.getElementById("proteina").textContent = data.proteinas;
             document.getElementById("gordura").textContent = data.gordura;
         })
         .catch(console.error);
