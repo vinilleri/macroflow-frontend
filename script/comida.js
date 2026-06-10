@@ -105,9 +105,34 @@ async function salvarDados(event){
         alert("Erro ao registrar comida.");
     }
 }
+async function carregarComida() {
 
-async function irParaEditar(id) {
-    window.location.href = `editarComida.html?id=${id}`;
+    const id = new URLSearchParams(window.location.search).get("id");
+    const origem = new URLSearchParams(window.location.search).get("origem");
+    try {
+
+        const response = await fetch(`${API_URL}/comida/${id}?origem=${origem}`, {
+            headers: getAuthHeaders()
+        });
+
+        const comida = await response.json();
+
+        document.getElementById("nome").value = comida.nome;
+        document.getElementById("calorias").value = comida.calorias;
+        document.getElementById("proteinas").value  = comida.proteinas;
+        document.getElementById("carboidrato").value = comida.carboidrato; 
+        document.getElementById("gordura").value = comida.gordura;
+        document.getElementById("valor").value = comida.valor;
+        document.getElementById("icone").value = comida.icone;
+        document.getElementById("unidade").value = comida.unidadeId;
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Erro ao carregar comida.");
+    }
+}
+async function irParaEditar(id,origem) {
+   window.location.href = `editarComida.html?id=${id}&origem=${origem}`;
 }
 async function irParaLista(){
     window.location.href = `comidas.html`;
@@ -230,7 +255,7 @@ async function listarComidas() {
                         </button>
 
                         ${podeEditar ? `
-                            <button onclick="irParaEditar('${comida.id}')">
+                            <button onclick="irParaEditar('${comida.id}', '${comida.origem}')">
                                 Editar
                             </button>
                             <button onclick="deletarComida('${comida.id}')">
