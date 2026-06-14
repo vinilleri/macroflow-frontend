@@ -65,18 +65,5 @@ if (mensagem) {
 }
 }
 document.addEventListener("DOMContentLoaded", mensagem);
-async function logout() {
-    try {
-        await fetch(`${API_URL}/usuario/deslogar`, {
-            method: "POST",
-            headers: getAuthHeaders()
-        });
-    } catch (error) {
-        console.error(error);
-    }
 
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
 
-    window.location.href = "login.html";
-}

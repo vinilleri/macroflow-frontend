@@ -84,6 +84,22 @@ async function atualizarAtividadeFisica() {
         alert("Erro ao atualizar atividade física.");
     }
 }
+async function logout() {
+    try {
+        await fetch(`${API_URL}/usuario/deslogar`, {
+            method: "POST",
+            headers: getAuthHeaders()
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+
+    window.location.href = "login.html";
+}
+
 
 async function deletarUsuario() {
     const confirmar = confirm("Tem certeza que deseja excluir sua conta?");

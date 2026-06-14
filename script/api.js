@@ -11,7 +11,7 @@ function getAuthHeaders() {
     return headers;
 }
 
-function verificarLogin() {
+ async function verificarLogin() {
     
     const token = localStorage.getItem("token");
 
@@ -25,18 +25,23 @@ function verificarLogin() {
 
         window.location.href = "login.html";
     }
+   try {
+        const response = await fetch(`${API_URL}/auth`, {
+            headers: getAuthHeaders()
+        });
 
-    const response = fetch(`${API_URL}/auth`, {
-       headers: getAuthHeaders()
-    });
+        if (response.status === 403 && !paginaAtual.includes("login.html")  && !paginaAtual.includes("codigoEmail.html")  
+            && !paginaAtual.includes("cadastro.html")) {
+            sessionStorage.setItem(
+                "mensagemLogin",
+                "Sessão expirada, logue novamente para continuar."
+            );
 
-    if (response.status === 401) {
-        sessionStorage.setItem(
-            "mensagemLogin",
-            "Sessão expirada, logue novamente para continuar"
-        );
-
-        window.location.href = "login.html";
+            localStorage.removeItem("token");
+            window.location.href = "login.html";
+        }
+    } catch (e) {
+        console.error(e);
     }
 }
 document.addEventListener("DOMContentLoaded", verificarLogin);
