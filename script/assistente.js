@@ -21,12 +21,20 @@ function scrollToBottom() {
     chat.scrollTop = chat.scrollHeight;
 }
 
+function mostrarLoading() {
+    document.getElementById("loading").style.display = "block";
+}
+
+function esconderLoading() {
+    document.getElementById("loading").style.display = "none";
+}
+
 async function enviar() {
     const input = document.getElementById("mensagem");
     const pergunta = input.value;
 
     if (!pergunta) return;
-
+    mostrarLoading();
     await fetch(`${API_URL}/assistente-virtual`, {
         method: "POST",
         headers: getAuthHeaders(),
@@ -35,5 +43,7 @@ async function enviar() {
 
     input.value = "";
 
-    carregarChat(); 
+   await carregarChat();
+   esconderLoading();
+    scrollToBottom();
 }
