@@ -10,10 +10,14 @@ async function carregarChat() {
 
     data.forEach(item => {
         chat.innerHTML += `
-            <div>Você: ${item.mensagemUsuario}</div>
-            <div>IA: ${item.mensagemIa}</div>
-            <hr>
-        `;
+          <div class="msg user">
+        <strong>Você:</strong> ${item.mensagemUsuario}
+    </div>
+
+    <div class="msg ia">
+        <strong>IA:</strong> ${item.mensagemIa}
+    </div>
+`;
     });
 }
 function scrollToBottom() {
