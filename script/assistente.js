@@ -20,6 +20,7 @@ async function carregarChat() {
 `;
     });
 }
+<<<<<<< HEAD
 
 async function deletarChat(){
     if(!confirm("Tem certeza que deseja deletar essa conversa?")){
@@ -41,6 +42,8 @@ async function deletarChat(){
         alert("Erro ao deletar conversa.");
     }
 }
+=======
+>>>>>>> 94536d1764680e22abb51b3748706919885d3f1f
 function scrollToBottom() {
     const chat = document.getElementById("chat");
     chat.scrollTop = chat.scrollHeight;
