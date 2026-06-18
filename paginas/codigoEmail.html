@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Login</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <h2>Confirmar Login</h2>
+    <form onsubmit="validarLogin(event)">
+        <input type="text" id="codigo" placeholder="Código recebido por email" required>
+        <button type="submit">Confirmar</button>
+    </form>
+    <script src="../script/api.js"></script>
+    <script src="../script/auth.js"></script>
+</body>
+</html>

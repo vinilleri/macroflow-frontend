@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Item</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+
+    <h2>Editar Item da Receita</h2>
+
+    <form onsubmit="editarItem(event)">
+        <input type="number" step="0.01" id="quantidade" placeholder="Quantidade" required>
+
+        <input type="number" step="0.01" id="valor" placeholder="Valor" required>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="editarReceita.html?id=">Voltar</a>
+
+    <script src="../script/api.js"></script>
+    <script src="../script/receitaItem.js"></script>
+
+</body>
+</html>

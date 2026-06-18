@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Receitas</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <h2>Receitas</h2>
+    <a href="cadastrarReceita.html">Cadastrar Nova Receita</a>
+    <br><br>
+    <table id="tableReceitas"></table>
+    <br>
+    <a href="comidas.html">Voltar</a>
+    <script src="../script/api.js"></script>
+    <script src="../script/consumoReceita.js"></script>
+    <script src="../script/receita.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", listarReceitas);
+    </script>
+</body>
+</html>
