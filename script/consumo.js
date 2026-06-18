@@ -97,10 +97,6 @@ async function listarConsumosDia() {
                     <td>${consumo.gordura}</td>
                     <td>${consumo.dataHora}</td>
                     <td>
-                        <button onclick="abrirEditarConsumo(${consumo.id})">
-                            Editar
-                        </button>
-
                         <button onclick="deletarConsumo(${consumo.id})">
                             Deletar
                         </button>
@@ -193,38 +189,5 @@ async function carregarConsumo() {
     } catch (erro) {
         console.error(erro);
         alert("Erro ao carregar consumo.");
-    }
-}
-function abrirEditarConsumo(id) {
-    window.location.href = `editarConsumo.html?id=${id}`;
-}
-async function editarConsumo(event) {
-
-    event.preventDefault();
-
-    const id = new URLSearchParams(window.location.search).get("id");
-
-    const dados = {
-        nome: document.getElementById("nome").value,
-        quantidade: document.getElementById("quantidade").value
-    };
-
-    try {
-
-        const response = await fetch(`${API_URL}/consumo/${id}`, {
-            method: "PUT",
-            headers: getAuthHeaders(),
-            body: JSON.stringify(dados)
-        });
-
-        if (response.ok) {
-            alert("Consumo atualizado.");
-            window.location.href = "consumos.html";
-        } else {
-            alert("Erro ao atualizar.");
-        }
-
-    } catch (erro) {
-        console.error(erro);
     }
 }

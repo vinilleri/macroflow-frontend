@@ -38,6 +38,7 @@ function initMetaPage() {
     toggleManualFields();
     carregarObjetivoAtual();
     metaAtual();
+    listarMetasAntigas();
 }
 
 window.addEventListener("DOMContentLoaded", initMetaPage);
