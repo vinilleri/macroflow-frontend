@@ -20,6 +20,30 @@ async function carregarChat() {
 `;
     });
 }
+<<<<<<< HEAD
+
+async function deletarChat(){
+    if(!confirm("Tem certeza que deseja deletar essa conversa?")){
+        return;
+    }
+    try{
+        const response = await fetch(`${API_URL}/assistente-virtual`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
+        if (response.ok) {
+            alert("Conversa deletada com sucesso!");
+            await carregarChat();
+        } else {
+            alert("Erro ao deletar conversa.");
+        }
+    } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao deletar conversa.");
+    }
+}
+=======
+>>>>>>> 94536d1764680e22abb51b3748706919885d3f1f
 
 
 async function deletarChat(){
