@@ -15,10 +15,36 @@ async function carregarChat() {
     </div>
 
     <div class="msg ia">
-        <strong>IA:</strong> ${item.mensagemIa}
+        <strong>Magali:</strong> ${item.mensagemIa}
     </div>
 `;
     });
+}
+
+
+async function deletarChat(){
+    if(!confirm("Tem certeza que quer deletar a conversa?")){
+        return;
+    }
+    try{
+          const response = await fetch(`${API_URL}/assistente-virtual`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+    });
+
+        if(response.ok){
+            alert("Conversa deletada com sucesso");
+            await carregarChat();
+        }
+        else{
+            alert("Erro ao deletar conversa");
+
+        }
+    }
+    catch(error){
+          console.error("Erro:", error);
+        alert("Erro ao deletar conversa.");
+    }
 }
 function scrollToBottom() {
     const chat = document.getElementById("chat");
