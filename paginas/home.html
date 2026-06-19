@@ -3,9 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fitness Hub - Seu Gerenciador de Saúde</title>
+    <link rel="stylesheet" href="../style/home.css">
+    <style>
+        /* ===== RESET ===== */
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        /* ===== BODY ===== */
+        body{
+            min-height:100vh;
+            padding:30px;
+            font-family:"Segoe UI",sans-serif;
+            background:#ffffff;
+            color:#333;
+            background-image:
+                linear-gradient(
+                    rgba(111,169,111,0.08) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(111,169,111,0.08) 1px,
+                    transparent 1px
+                );
+            background-size:45px 45px;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container{
+            max-width:1200px;
+            margin:auto;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar{
+            height:70px;
+            background:#fff;
+            border-radius:20px;
+            padding:0 30px;
+            margin-bottom:35px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:
+                0 5px 15px rgba(0,0,0,.05);
+        }
+
+        .logo{
+            font-size:28px;
+            font-weight:bold;
+            color:#4E7D4E;
+        }
+
+        .menu{
+            display:flex;
+            gap:25px;
+        }
+
+        .menu a{
+            text-decoration:none;
+            color:#4E7D4E;
+            font-weight:600;
+            transition:.2s;
+        }
+
+        .menu a:hover{
+            color:#6FA96F;
+        }
+
+        /* ===== TÍTULOS ===== */
+        h1{
+            text-align:center;
+            font-size:48px;
+            color:#4E7D4E;
+            margin-bottom:15px;
+            margin-top:20px;
+        }
+
+        .subtitle{
+            text-align:center;
+            font-size:18px;
+            color:#666;
+            margin-bottom:50px;
+        }
+
+        h2{
+            font-size:32px;
+            color:#4E7D4E;
+            margin-bottom:25px;
+            margin-top:40px;
+            padding-bottom:15px;
+            border-bottom:3px solid #6FA96F;
+        }
+
+        /* ===== GRID DE CARDS ===== */
+        .cards-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:20px;
+            margin-bottom:40px;
+        }
+
+        .card{
+            background:#fff;
+            padding:25px;
+            border-radius:16px;
+            border:2px solid rgba(111,169,111,0.15);
+            box-shadow:0 4px 15px rgba(0,0,0,.05);
+            transition:all .3s ease;
+            text-decoration:none;
+            color:#333;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+        }
+
+        .card:hover{
+            transform:translateY(-8px);
+            border-color:#6FA96F;
+            box-shadow:0 12px 25px rgba(111,169,111,.15);
+        }
+
+        .card-icon{
+            font-size:48px;
+            margin-bottom:15px;
+            display:block;
+        }
+
+        .card h3{
+            color:#4E7D4E;
+            font-size:20px;
+            margin-bottom:10px;
+        }
+
+        .card p{
+            font-size:14px;
+            color:#666;
+            margin:0;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero{
+            background:linear-gradient(135deg, #4E7D4E 0%, #6FA96F 100%);
+            color:white;
+            padding:50px;
+            border-radius:24px;
+            text-align:center;
+            margin-bottom:50px;
+            box-shadow:0 10px 30px rgba(78,125,78,.2);
+        }
+
+        .hero h1{
+            color:white;
+            font-size:52px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:20px;
+            margin-bottom:30px;
+            opacity:0.95;
+        }
+
+        .hero-buttons{
+            display:flex;
+            gap:15px;
+            justify-content:center;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:14px 30px;
+            border:none;
+            border-radius:12px;
+            background:#fff;
+            color:#4E7D4E;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:.2s;
+            text-decoration:none;
+            display:inline-block;
+        }
+
+        .btn:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 20px rgba(0,0,0,.15);
+        }
+
+        .btn-secondary{
+            background:transparent;
+            color:white;
+            border:2px solid white;
+        }
+
+        .btn-secondary:hover{
+            background:white;
+            color:#4E7D4E;
+        }
+
+        /* ===== SEÇÕES ===== */
+        .section{
+            background:#fff;
+            padding:30px;
+            border-radius:24px;
+            border:1px solid rgba(111,169,111,0.18);
+            box-shadow:0 10px 25px rgba(0,0,0,0.06);
+            margin-bottom:30px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media(max-width:900px){
+            body{
+                padding:20px;
+            }
+
+            h1{
+                font-size:36px;
+            }
+
+            h2{
+                font-size:26px;
+            }
+
+            .navbar{
+                flex-direction:column;
+                height:auto;
+                padding:20px;
+                gap:15px;
+            }
+
+            .menu{
+                margin-top:15px;
+                flex-wrap:wrap;
+                justify-content:center;
+            }
+
+            .hero{
+                padding:30px;
+            }
+
+            .hero h1{
+                font-size:36px;
+            }
+
+            .cards-grid{
+                grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+                gap:15px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer{
+            text-align:center;
+            padding:30px;
+            color:#666;
+            font-size:14px;
+            margin-top:50px;
+        }
+    </style>
 </head>
 <body>
-    
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo"> MacroFlow</div>
+        <div class="menu">
+            <a href="#inicio">Início</a>
+            <a href="#cadastros">Cadastros</a>
+            <a href="#gerenciar">Gerenciar</a>
+            <a href="#perfil">Perfil</a>
+        </div>
+    </nav>
+
+    <!-- CONTAINER -->
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero" id="inicio">
+            <h1>🎯 Seu Gerenciador de Saúde</h1>
+            <p>Acompanhe suas refeições, receitas e objetivos de forma inteligente e fácil</p>
+         
+            
+
+        </section>
+
+
+        <!-- SEÇÃO: CADASTROS -->
+        <section class="section" id="cadastros">
+            <h2>➕ Cadastros</h2>
+            <div class="cards-grid">
+                <a href="cadastrarComida.html" class="card">
+                    <span class="card-icon">🍎</span>
+                    <h3>Cadastrar Comida</h3>
+                    <p>Adicione novos alimentos</p>
+                </a>
+                <a href="cadastrarReceita.html" class="card">
+                    <span class="card-icon">👨‍🍳</span>
+                    <h3>Cadastrar Receita</h3>
+                    <p>Crie suas receitas</p>
+                </a>
+                <a href="cadastrarMeta.html" class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>Cadastrar Meta</h3>
+                    <p>Defina seus objetivos</p>
+                </a>
+                <a href="cadastrarObjetivo.html" class="card">
+                    <span class="card-icon">📊</span>
+                    <h3>Cadastrar Objetivo</h3>
+                    <p>Estabeleça metas gerais</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: GERENCIAR -->
+        <section class="section" id="gerenciar">
+            <h2>📋 Gerenciar</h2>
+            <div class="cards-grid">
+                <a href="comidas.html" class="card">
+                    <span class="card-icon">🥗</span>
+                    <h3>Minhas Comidas</h3>
+                    <p>Veja seus alimentos</p>
+                </a>
+                <a href="receitas.html" class="card">
+                    <span class="card-icon">📚</span>
+                    <h3>Minhas Receitas</h3>
+                    <p>Acesse todas as receitas</p>
+                </a>
+                <a href="consumoDia.html" class="card">
+                    <span class="card-icon">🍽️</span>
+                    <h3>Consumo do Dia</h3>
+                    <p>Acompanhe seu consumo</p>
+                </a>
+                <a href="listaConsumo.html" class="card">
+                    <span class="card-icon">📈</span>
+                    <h3>Histórico de Consumo</h3>
+                    <p>Veja seu histórico</p>
+                </a>
+             
+                <a href="novoConsumo.html" class="card">
+                    <span class="card-icon">➕</span>
+                    <h3>Novo Consumo</h3>
+                    <p>Registre o que comeu</p>
+                </a>
+            </div>
+        </section>
+
+      
+
+        <!-- SEÇÃO: PERFIL E DADOS -->
+        <section class="section" id="perfil">
+            <h2>👤 Perfil e Dados Pessoais</h2>
+            <div class="cards-grid">
+                <a href="perfil.html" class="card">
+                    <span class="card-icon">👤</span>
+                    <h3>Meu Perfil</h3>
+                    <p>Gerencie seu perfil</p>
+                </a>
+                <a href="medidasCorporais.html" class="card">
+                    <span class="card-icon">📏</span>
+                    <h3>Medidas Corporais</h3>
+                    <p>Acompanhe suas medidas</p>
+                </a>
+                <a href="meta.html" class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>Minhas Metas</h3>
+                    <p>Veja suas metas</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- SEÇÃO: FERRAMENTAS -->
+        <section class="section">
+            <h2>🤖 Ferramentas</h2>
+            <div class="cards-grid">
+                <a href="chatbot.html" class="card">
+                    <span class="card-icon">💬</span>
+                    <h3>Assistente IA</h3>
+                    <p>Chat com inteligência artificial</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- RODAPÉ -->
+        <footer>
+            <p>&copy; 2026 MacroFlow - Seu Gerenciador de Saúde. Todos os direitos reservados.</p>
+
+        </footer>
+    </div>
 </body>
 </html>

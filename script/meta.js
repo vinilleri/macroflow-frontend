@@ -155,7 +155,7 @@ async function listarMetasAntigas() {
 
     const metas = await response.json();
     const table = document.getElementById("metaTable");
-
+    console.log(metas);
     let html = `
         <tr>
             <th>Tipo</th>
@@ -163,20 +163,23 @@ async function listarMetasAntigas() {
             <th>Proteínas</th>
             <th>Carboidrato</th>
             <th>Gordura</th>
-            <th>Data</th>
+            <th>Data Criação</th>
+            <th>Data Término</th>
             <th>Ação</th>
         </tr>
     `;
 
-    metas.forEach(meta => {
+    metas.toReversed().forEach(meta => {
         html += `
             <tr>
+            
                 <td>${meta.tipoMeta}</td>
                 <td>${meta.calorias}</td>
                 <td>${meta.proteinas}</td>
                 <td>${meta.carboidrato}</td>
                 <td>${meta.gordura}</td>
-                <td>${new Date(meta.dataCriacao).toLocaleDateString()}</td>
+                <td>${meta.dataInicio}</td>
+                <td>${meta.dataFim}</td>
                 <td>
                     <button onclick="deletarMeta(${meta.id})">Deletar</button>
                 </td>

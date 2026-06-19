@@ -44,7 +44,18 @@ async function deletarChat(){
 }
 
 
+function falar(texto){
 
+    const voz = new SpeechSynthesisUtterance(texto);
+
+    voz.lang = "pt-BR";
+
+    voz.rate = 1;
+
+    voz.pitch = 1;
+
+    speechSynthesis.speak(voz);
+}
 function scrollToBottom() {
     const chat = document.getElementById("chat");
     chat.scrollTop = chat.scrollHeight;
