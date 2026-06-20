@@ -16,6 +16,9 @@ async function carregarChat() {
 
     <div class="msg ia">
         <strong>Magali:</strong> ${item.mensagemIa}
+             <button onclick='falar(${JSON.stringify(item.mensagemIa)})'>
+                🔊 Ouvir
+             </button>
     </div>
 `;
     });
@@ -50,7 +53,7 @@ function falar(texto){
 
     voz.lang = "pt-BR";
 
-    voz.rate = 1;
+    voz.rate = 3;
 
     voz.pitch = 1;
 

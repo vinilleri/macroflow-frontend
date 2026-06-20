@@ -3,16 +3,16 @@ function salvarDados(event) {
 
     let percentualGordura;
     let circuferenciaCintura;
-    const peso = document.getElementById("peso").value;
-    const altura = document.getElementById("altura").value;
-    const sexo = document.getElementById("sexo").value.toUpperCase();
-    const dataNascimento = document.getElementById("dataNascimento").value;
+    const peso = document.getElementById("pesoPost").value;
+    const altura = document.getElementById("alturaPost").value;
+    const sexo = document.getElementById("sexoPost").value.toUpperCase();
+    const dataNascimento = formatarDataParaBr(document.getElementById("dataNascimentoPost").value);
 
-    if (document.getElementById("percentualGordura").value) {
-        percentualGordura = document.getElementById("percentualGordura").value;
+    if (document.getElementById("percentualGorduraPost").value) {
+        percentualGordura = document.getElementById("percentualGorduraPost").value;
     }
-    if (document.getElementById("circuferenciaCintura").value) {
-        circuferenciaCintura = document.getElementById("circuferenciaCintura").value;
+    if (document.getElementById("circuferenciaCinturaPost").value) {
+        circuferenciaCintura = document.getElementById("circuferenciaCinturaPost").value;
     }
 
     const dados = {
@@ -31,12 +31,12 @@ function salvarDados(event) {
     }).then(response => {
         if (response.ok) {
             alert("Medidas corporais registradas com sucesso!");
-            document.getElementById("peso").value = "";
-            document.getElementById("altura").value = "";
-            document.getElementById("sexo").value = "";
-            document.getElementById("dataNascimento").value = "";
-            document.getElementById("percentualGordura").value = "";
-            document.getElementById("circuferenciaCintura").value = "";
+            document.getElementById("pesoPost").value = "";
+            document.getElementById("alturaPost").value = "";
+            document.getElementById("sexoPost").value = "";
+            document.getElementById("dataNascimentoPost").value = "";
+            document.getElementById("percentualGorduraPost").value = "";
+            document.getElementById("circuferenciaCinturaPost").value = "";
         } else {
             alert("Erro ao registrar medidas corporais.");
         }
