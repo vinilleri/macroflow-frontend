@@ -1,31 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel = "stylesheet" href = "../style/chatbot.css"/>
-    
+    <title>Magali</title>
+    <link rel="stylesheet" href="../style/chatbot.css"/>
 </head>
 <body>
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
+
+    <!-- HEADER -->
+    <div class="chat-header">
+        <a href="home.html" class="header-back">← Voltar</a>
+        <h2>Magali</h2>
+        <button class="delete-button header-delete" onclick="deletarChat()">🗑 Deletar</button>
+    </div>
+
     <div class="magali-avatar">
-<dotlottie-wc src="https://lottie.host/fc775ec4-df36-4948-b270-a2ba838c9453/AFmGAHNke5.lottie"
- style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
- </div>
+        <dotlottie-wc src="https://lottie.host/fc775ec4-df36-4948-b270-a2ba838c9453/AFmGAHNke5.lottie"
+            style="width: 300px;height: 300px" autoplay loop></dotlottie-wc>
+    </div>
+
     <div id="chat"></div>
+    <div id="loading" style="display:none;">Magali digitando...</div>
 
-<input id="mensagem" />
-<button onclick="enviar()">Enviar</button>
-<button onclick="deletarChat()">Deletar Conversa</button>
-<div id="loading" style="display:none;">Magali digitando...</div>
-<script src = "../script/api.js"></script>
-<script src = "../script/assistente.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-    carregarChat();
-});
+    <!-- ÁREA DE ENVIO ESTILO WHATSAPP -->
+    <div class="input-area">
+        <input id="mensagem" placeholder="Digite uma mensagem"/>
+        <button class="send-button" onclick="enviar()">➤</button>
+    </div>
 
-</script>
+    <script src="../script/api.js"></script>
+    <script src="../script/assistente.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            carregarChat();
+        });
+    </script>
 </body>
 </html>

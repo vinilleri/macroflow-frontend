@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+    <div class="card">
     <h2>Cadastrar Comida</h2>
     <form onsubmit="salvarDados(event)">
         <input type="text" id="nome" placeholder="Nome" required>
@@ -20,7 +21,10 @@
         <select id="unidade"></select>
         <button type="submit">Salvar</button>
     </form>
+    <div class="card-footer">
     <a href="comidas.html">Voltar</a>
+    </div>
+    </div>
     <script src="../script/api.js"></script>
     <script src="../script/comida.js"></script>
 </body>

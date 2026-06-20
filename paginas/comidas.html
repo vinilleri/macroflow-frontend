@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Comidas</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/lista.css">
 </head>
 <body>
+<div class="card">
     <h2>Comidas</h2>
     <a href="cadastrarComida.html">Cadastrar Nova Comida</a>
-    <br><br>
     <table id="comidasTable"></table>
 
-    <br>
-    <a href="receitas.html">Receitas</a> |
-    <a href="consumoDia.html">Consumo do Dia</a> |
-    <a href="perfil.html">Perfil</a> |
-    <button onclick="logout()">Sair</button>
-
+    <div class="card-footer">
+        <a href="receitas.html">Receitas</a> |
+        <a href="consumoDia.html">Consumo do Dia</a> |
+        <a href="perfil.html">Perfil</a> |
+        <a href="home.html">Voltar</a>
+    </div>
+</div>
     <script src="../script/api.js"></script>
     <script src="../script/auth.js"></script>
     <script src="../script/consumo.js"></script>

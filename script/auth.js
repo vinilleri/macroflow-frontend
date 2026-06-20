@@ -46,7 +46,7 @@ async function validarLogin(event) {
             localStorage.setItem("token", token);
 
             alert("Login confirmado com sucesso!");
-            window.location.href = "cadastrarObjetivo.html";
+            window.location.href = "home.html";
         } else {
             alert("Código de confirmação inválido. Por favor, tente novamente.");
         }

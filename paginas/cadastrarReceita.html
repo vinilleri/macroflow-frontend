@@ -6,12 +6,16 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+    <div class="card">
     <h2>Cadastrar Receita</h2>
     <form onsubmit="salvarDados(event)">
         <input type="text" id="nome" placeholder="Nome da receita" required>
         <button type="submit">Salvar</button>
     </form>
+    <div class="card-footer">
     <a href="receitas.html">Voltar</a>
+    </div>
+    </div>
     <script src="../script/api.js"></script>
     <script src="../script/receita.js"></script>
 </body>

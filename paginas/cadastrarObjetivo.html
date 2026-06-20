@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Objetivo</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/sections.css">
 </head>
 <body>
+    <div class="card">
     <h2>Meu Objetivo</h2>
 
     <h3>Objetivo Atual</h3>
@@ -13,7 +14,9 @@
     <p>Início: <span id="dataInicioAtual"></span></p>
     <p>Fim: <span id="dataFinalAtual"></span></p>
     <button onclick="desativarObjetivo()">Desativar Objetivo</button>
+</div>
 
+    <div class="card">
     <h3>Novo Objetivo</h3>
     <form onsubmit="salvarDados(event)">
         <label>Tipo de Objetivo:</label>
@@ -22,7 +25,8 @@
         <input type="date" id="dataFinal">
         <button type="submit">Salvar</button>
     </form>
-
+</div>
+<div class="card">
     <h3>Editar Objetivo Atual</h3>
     <form onsubmit="editarObjetivo(event)">
         <label>Tipo de Objetivo:</label>
@@ -31,12 +35,13 @@
         <input type="date" id="dataFinal">
         <button type="submit">Editar</button>
     </form>
-
+    </div>
+    <div class="card">
     <h3>Histórico</h3>
     <table>
         <tbody id="tabelaObjetivos"></tbody>
     </table>
-
+    </div>
     <a href="cadastrarMeta.html">Próximo: Configurar Meta</a>
     <script src="../script/api.js"></script>
     <script src="../script/objetivo.js"></script>

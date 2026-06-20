@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Consumo do Dia</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/sections.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="card">
     <h2>Consumo do Dia</h2>
     <p>Calorias: <span id="caloriasDia"></span></p>
     <p>Proteínas: <span id="proteinasDia"></span></p>
     <p>Carboidrato: <span id="carboidratoDia"></span></p>
     <p>Gordura: <span id="gorduraDia"></span></p>
-
+    </div>
+    <div class="card">
     <h3>Gráfico por Período</h3>
     <input type="date" id="dataInicio">
     <input type="date" id="dataFim">
     <button onclick="graficoPeriodo()">Gerar Gráfico</button>
     <canvas id="graficoPeriodo"></canvas>
-
-    <br>
-    <a href="comidas.html">Voltar</a>
+    <a href="home.html">Voltar</a>
+    </div>
     <script src="../script/api.js"></script>
     <script src="../script/consumo.js"></script>
     <script>

@@ -9,33 +9,28 @@
     box-sizing:border-box;
 }
 
+
+
 /* ===== BODY ===== */
-
 body{
-
     min-height:100vh;
-
     padding:30px;
-
     font-family:"Segoe UI",sans-serif;
-
     background:#ffffff;
-
     color:#333;
-
+    display:flex;
+    justify-content:center;
+    align-items:center;
     background-image:
-
         linear-gradient(
             rgba(111,169,111,0.08) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(111,169,111,0.08) 1px,
             transparent 1px
         );
-
     background-size:45px 45px;
 }
 
@@ -152,34 +147,31 @@ select:focus{
 }
 
 /* ===== BOTÕES ===== */
-
-button{
-
-    padding:14px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#6FA96F;
-
-    color:white;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.2s;
+button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: #6FA96F;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(111, 169, 111, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-button:hover{
-
-    background:#4E7D4E;
-
-    transform:translateY(-2px);
+button:hover {
+    background: #4E7D4E;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(111, 169, 111, 0.4);
 }
+
+button:active {
+    transform: translateY(-1px);
+}
+
 
 /* ===== LINKS ===== */
 
@@ -297,6 +289,94 @@ canvas{
     gap:25px;
 }
 
+/* ===== CARD CENTRALIZADO ===== */
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 50px 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(111, 169, 111, 0.18);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 420px;
+    animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card h2 {
+    margin-bottom: 30px;
+    font-size: 36px;
+}
+
+.card p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.card input:focus {
+    border-color: #6FA96F;
+    box-shadow: 0 0 0 3px rgba(111, 169, 111, 0.1);
+    background-color: #fafbfa;
+}
+
+.card button {
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 24px;
+    color: #666;
+    font-size: 15px;
+}
+
+.card-footer a {
+    color: #6FA96F;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.card-footer a:hover {
+    color: #4E7D4E;
+}
+
+
 /* ===== RESPONSIVO ===== */
 
 @media(max-width:900px){
@@ -305,7 +385,10 @@ canvas{
 
         padding:20px;
     }
-
+    .card {
+        padding: 40px 30px;
+        max-width: 100%;
+    }
     h2{
 
         font-size:32px;

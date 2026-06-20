@@ -1,0 +1,164 @@
+/* ===== BODY PADRÃO (páginas de listagem) ===== */
+body{
+    min-height:100vh;
+    padding:30px;
+    font-family:"Segoe UI",sans-serif;
+    background:#ffffff;
+    color:#333;
+    background-image:
+        linear-gradient(
+            rgba(111,169,111,0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(111,169,111,0.08) 1px,
+            transparent 1px
+        );
+    background-size:45px 45px;
+}
+
+/* ===== BODY LOGIN/CADASTRO (centralizado) ===== */
+body.auth-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ===== CARD PADRÃO (listagens) ===== */
+.card{
+    background:#fff;
+    max-width:1000px;
+    margin:0 auto;
+    padding:35px 40px;
+    border-radius:24px;
+    border:1px solid rgba(111,169,111,0.18);
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+    animation:slideIn 0.4s ease;
+}
+
+/* ===== CARD LOGIN (menor, centralizado) ===== */
+.card.auth-card{
+    max-width:420px;
+}
+
+@keyframes slideIn{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* ===== LINK "CADASTRAR NOVO" ===== */
+.card > a{
+    display:inline-block;
+    background:#6FA96F;
+    color:#fff;
+    padding:12px 22px;
+    border-radius:12px;
+    font-weight:600;
+    margin-top:10px;
+    transition:all 0.3s ease;
+    box-shadow:0 4px 12px rgba(111,169,111,0.3);
+}
+
+.card > a:hover{
+    background:#4E7D4E;
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(111,169,111,0.35);
+}
+
+/* esconde o <br><br> visualmente, dando espaço certo */
+.card br{
+    display:none;
+}
+
+.card > a + br + br{
+    display:none;
+}
+
+/* ===== TABELA ===== */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+    border-radius:16px;
+    overflow:hidden;
+}
+
+th{
+    background:#6FA96F;
+    color:white;
+    padding:14px 16px;
+    text-align:left;
+    font-weight:600;
+}
+
+td{
+    padding:13px 16px;
+    border-bottom:1px solid #eee;
+}
+
+tr:hover td{
+    background:#f5fbf5;
+}
+
+tr:last-child td{
+    border-bottom:none;
+}
+
+/* ===== FOOTER DE NAVEGAÇÃO ===== */
+.card-footer{
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid #eee;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    color:#999;
+}
+
+.card-footer a{
+    color:#4E7D4E;
+    font-weight:600;
+    transition:color 0.3s ease;
+}
+
+.card-footer a:hover{
+    color:#6FA96F;
+}
+
+button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: #6FA96F;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(111, 169, 111, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: #4E7D4E;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(111, 169, 111, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:900px){
+    body{ padding:20px; }
+    .card{ padding:25px 20px; }
+    h2{ font-size:32px; }
+    table{ display:block; overflow-x:auto; white-space:nowrap; }
+    .card-footer{ flex-direction:column; gap:6px; }
+}

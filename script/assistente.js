@@ -14,14 +14,20 @@ async function carregarChat() {
         <strong>Você:</strong> ${item.mensagemUsuario}
     </div>
 
-    <div class="msg ia">
-        <strong>Magali:</strong> ${item.mensagemIa}
-             <button onclick='falar(${JSON.stringify(item.mensagemIa)})'>
-                🔊 Ouvir
-             </button>
+  <div class="msg ia">
+    <strong>Magali:</strong> ${item.mensagemIa}
+    <button class="tts-button" data-texto="${encodeURIComponent(item.mensagemIa)}">
+        🔊
+    </button>
     </div>
 `;
     });
+   document.querySelectorAll('.tts-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const texto = decodeURIComponent(btn.dataset.texto);
+        falar(texto, btn);
+    });
+});
 }
 
 
@@ -46,18 +52,73 @@ async function deletarChat(){
     }
 }
 
+let vozFeminina = null;
 
-function falar(texto){
 
-    const voz = new SpeechSynthesisUtterance(texto);
+function carregarVozes(){
+    const vozes = window.speechSynthesis.getVoices();
 
-    voz.lang = "pt-BR";
+    vozFeminina = vozes.find(v =>
+        v.lang.startsWith('pt') &&
+        /female|mulher|maria|luciana|fernanda|google português do brasil/i.test(v.name)
+    );
 
-    voz.rate = 3;
+    if(!vozFeminina){
+        vozFeminina = vozes.find(v => v.lang.startsWith('pt'));
+    }
+}
 
-    voz.pitch = 1;
+window.speechSynthesis.onvoiceschanged = carregarVozes;
+carregarVozes();
 
-    speechSynthesis.speak(voz);
+function falar(texto, btn){
+    const synth = window.speechSynthesis;
+    const avatar = document.querySelector('.magali-avatar');
+
+    if(synth.speaking && btn.classList.contains('playing')){
+        synth.cancel();
+        btn.classList.remove('playing');
+        btn.innerHTML = '🔊 Ouvir';
+        avatar.classList.remove('speaking');
+        return;
+    }
+
+    if(synth.speaking){
+        synth.cancel();
+        document.querySelectorAll('.tts-button.playing').forEach(b => {
+            b.classList.remove('playing');
+            b.innerHTML = '🔊';
+        });
+    }
+
+    const utterance = new SpeechSynthesisUtterance(texto);
+    utterance.lang = 'pt-BR';
+    utterance.rate = 1;
+    utterance.pitch = 1.1;
+
+    if(vozFeminina){
+        utterance.voice = vozFeminina;
+    }
+
+    utterance.onstart = () => {
+        btn.classList.add('playing');
+        btn.innerHTML = '⏸';
+        avatar.classList.add('speaking');
+    };
+
+    utterance.onend = () => {
+        btn.classList.remove('playing');
+        btn.innerHTML = '🔊';
+        avatar.classList.remove('speaking');
+    };
+
+    utterance.onerror = () => {
+        btn.classList.remove('playing');
+        btn.innerHTML = '🔊';
+        avatar.classList.remove('speaking');
+    };
+
+    synth.speak(utterance);
 }
 function scrollToBottom() {
     const chat = document.getElementById("chat");

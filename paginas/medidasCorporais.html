@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Medidas Corporais</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/sections.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="card">
     <h2>Medidas Corporais</h2>
 
     <h3>Medidas Atuais</h3>
@@ -16,7 +17,8 @@
     <p>Data de Nascimento: <span id="dataNascimentoTexto"></span></p>
     <p>% Gordura: <span id="percentualGordura"></span></p>
     <p>Cintura: <span id="circuferenciaCintura"></span></p>
-
+    </div>
+    <div class="card">
     <h3>Registrar Medidas</h3>
     <form onsubmit="salvarDados(event)">
         <input type="number" step="0.01" id="pesoPost" placeholder="Peso (kg)" required>
@@ -30,7 +32,8 @@
         <input type="number" step="0.01" id="circuferenciaCinturaPost" placeholder="Cintura cm (opcional)">
         <button type="submit">Salvar</button>
     </form>
-
+    </div>
+<div class="card">
     <h3>Histórico por Período</h3>
     <input type="date" id="dataInicio">
     <input type="date" id="dataFinal">
@@ -40,9 +43,10 @@
         <tbody id="tabelaMedidas"></tbody>
     </table>
     <canvas id="graficoPeso"></canvas>
-
-    <br>
-    <a href="comidas.html">Voltar</a>
+</div>
+    <div class="card-footer">
+    <a href="home.html">Voltar</a>
+    </div>
     <script src="../script/api.js"></script>
     <script src="../script/medidasCorporais.js"></script>
 </body>

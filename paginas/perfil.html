@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
+    <div class="card">
     <h2>Perfil</h2>
     <form onsubmit="editarUsuario(event)">
         <input type="text" id="nome" placeholder="Nome" required>
@@ -15,14 +16,16 @@
         <select id="atividadeFisica"></select>
         <button type="submit">Salvar</button>
     </form>
-
+   
     <button onclick="atualizarAtividadeFisica()">Atualizar só Atividade Física</button>
     <button onclick="deletarUsuario()">Excluir Conta</button>
     <button onclick = "logout()"> Deslogar da Conta</button>
-
-    <br>
+    
+   
     <a href="medidasCorporais.html">Medidas Corporais</a> |
-    <a href="comidas.html">Voltar</a>
+    <a href="home.html">Voltar</a>
+      </div>
+         </div>
     <script src="../script/api.js"></script>
     <script src="../script/perfilUsuario.js"></script>
 </body>

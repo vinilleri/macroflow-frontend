@@ -3,38 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Meta</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/sections.css">
 </head>
 <body>
-    <h2>Meta Nutricional</h2>
+    <div class="page-container">
+        <h2>Meta Nutricional</h2>
 
-    <h3>Meta Atual</h3>
-    <p>Calorias: <span id="calorias"></span></p>
-    <p>Carboidrato: <span id="carboidrato"></span></p>
-    <p>Proteína: <span id="proteina"></span></p>
-    <p>Gordura: <span id="gordura"></span></p>
-    <button onclick="desativarMeta()">Desativar Meta</button>
-
-    <h3>Criar Meta</h3>
-    <form id="metaForm">
-        <label>Tipo de Meta:</label>
-        <select id="tipoMeta">
-            <option value="CALCULADA">CALCULADA</option>
-            <option value="MANUAL">MANUAL</option>
-        </select>
-
-        <div id="manualFields" style="display:none;">
-            <input type="number" id="calorias" placeholder="Calorias">
-            <input type="number" id="proteinas" placeholder="Proteínas">
-            <input type="number" id="carboidrato" placeholder="Carboidrato">
-            <input type="number" id="gordura" placeholder="Gordura">
+        <!-- CARD: Meta Atual -->
+        <div class="card">
+            <h3>Meta Atual</h3>
+            <div class="meta-info">
+                <div class="chip">Calorias: <span id="caloriasAtual"></span></div>
+                <div class="chip">Carboidrato: <span id="carboidratoAtual"></span></div>
+                <div class="chip">Proteína: <span id="proteinaAtual"></span></div>
+                <div class="chip">Gordura: <span id="gorduraAtual"></span></div>
+            </div>
+            <button class="delete-button" onclick="desativarMeta()">Desativar Meta</button>
         </div>
 
-        <button type="submit">Salvar Meta</button>
-    </form>
+        <!-- CARD: Criar Meta -->
+        <div class="card">
+            <h3>Criar Meta</h3>
+            <form id="metaForm">
+                <div>
+                    <label>Tipo de Meta:</label>
+                    <select id="tipoMeta">
+                        <option value="CALCULADA">CALCULADA</option>
+                        <option value="MANUAL">MANUAL</option>
+                    </select>
+                </div>
 
-    <h3>Histórico de Metas</h3>
-    <table id="metaTable"></table>
+                <div id="manualFields" style="display:none;">
+                    <input type="number" id="calorias" placeholder="Calorias">
+                    <input type="number" id="proteinas" placeholder="Proteínas">
+                    <input type="number" id="carboidrato" placeholder="Carboidrato">
+                    <input type="number" id="gordura" placeholder="Gordura">
+                </div>
+
+                <button type="submit">Salvar Meta</button>
+            </form>
+        </div>
+
+        <!-- CARD: Histórico -->
+        <div class="card">
+            <h3>Histórico de Metas</h3>
+            <table id="metaTable"></table>
+        </div>
+
+        <a href="home.html" class="back-link">← Voltar</a>
+    </div>
 
     <script src="../script/api.js"></script>
     <script src="../script/meta.js"></script>
