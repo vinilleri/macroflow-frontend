@@ -1,5 +1,6 @@
-//const API_URL = "http://137.131.183.148:8080/api";
-const API_URL = "http://localhost:8080/api";
+
+const API_URL = "http://137.131.183.148:8080/api";
+
 function getAuthHeaders() {
     const token = localStorage.getItem("token");
     const headers = {
