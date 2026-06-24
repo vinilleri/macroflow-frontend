@@ -4,29 +4,23 @@ const receitaId = params.get("id");
 const itemIdAtual = params.get("itemId");
 const origemItem = params.get("origem") || "USUARIO";
 
-console.log(window.location.href);
-console.log(window.location.search);
-
-console.log("receitaId:", receitaId);
-console.log("itemIdAtual:", itemIdAtual);
-console.log("origem:", origemItem);
 
 document.addEventListener("DOMContentLoaded", async () => {
-    await unidades();
+    
     await listarComidas();
     await listarItens();
 
-    document.getElementById("comida").addEventListener("change", () => {
+    document.getElementById("comida").addEventListener("change", async () => {
         const select = document.getElementById("comida");
         const opt = select.options[select.selectedIndex];
 
-        const unidadeSelect = document.getElementById("unidade");
+        const unidade = document.getElementById("unidade");
 
-        unidadeSelect.disabled = false;
+        unidade.disabled = false;
 
         if (opt?.dataset?.unidadeId) {
-            unidadeSelect.value = opt.dataset.unidadeId;
-            unidadeSelect.disabled = true;
+            unidade.value = await getUnidade(opt.dataset.unidadeId);
+            unidade.disabled = true;
         }
     });
 
@@ -39,38 +33,75 @@ async function listarComidas() {
     const response = await fetch(`${API_URL}/comida/todos`, {
         headers: getAuthHeaders()
     });
+    
 
     const data = await response.json();
 
-    const select = document.getElementById("comida");
-    select.innerHTML = "";
+    const selectComida = document.getElementById("comida");
+    selectComida.innerHTML = "";
 
+    
+
+    
     data.forEach(c => {
         const option = document.createElement("option");
         option.value = c.id;
         option.textContent = c.nome;
         option.dataset.origem = c.origem;
         option.dataset.unidadeId = c.unidadeId;
-        select.appendChild(option);
+        
+
+        selectComida.appendChild(option);
     });
+
+
 }
 
-async function unidades() {
-    const response = await fetch(`${API_URL}/unidade`, {
+async function getUnidade(unidadeId){
+    
+    const response = await fetch(`${API_URL}/unidade/${unidadeId}`, {
         headers: getAuthHeaders()
     });
 
     const data = await response.json();
 
-    const select = document.getElementById("unidade");
-    select.innerHTML = "";
+    const unidade = data.nome;
+    return unidade;
+}
 
-    data.forEach(u => {
-        const option = document.createElement("option");
-        option.value = u.id;
-        option.textContent = u.nome;
-        select.appendChild(option);
-    });
+
+async function adicionarItem(event){
+    event.preventDefault();
+
+    const select = document.getElementById("comida");
+    const opt = select.options[select.selectedIndex];
+
+    const dados = {
+        comidaId: opt.value,
+        unidadeId: opt.dataset.unidadeId,
+        quantidade: document.getElementById("quantidade").value,
+        valor: document.getElementById("valor").value,
+        origem: opt.dataset.origem
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/receita/${receitaId}/itens`, {
+            method: "POST",
+            headers: getAuthHeaders(),
+            body: JSON.stringify(dados)
+        });
+
+        if (response.ok) {
+            alert("Item registrado com sucesso!");
+            irParaLista();
+        } else {
+            alert("Erro ao registrar item.");
+        }
+    } catch (error) {
+        console.error("Erro:", error);
+        alert("Erro ao registrar item.");
+    }
+
 }
 
 function listarItens() {
