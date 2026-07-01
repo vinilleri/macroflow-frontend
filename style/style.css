@@ -73,11 +73,11 @@ section{
 
     border-radius:24px;
 
-    border:1px solid rgba(111,169,111,0.18);
+    border:1px solid #6fa96f2e;
 
     box-shadow:
 
-        0 10px 25px rgba(0,0,0,0.06);
+        0 10px 25px #0000000f;
 
     margin-bottom:30px;
 }
