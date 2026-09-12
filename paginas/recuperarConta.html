@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recuperar acesso · MacroFlow</title>
+    <link rel="stylesheet" href="../style/macroflow.css" />
+  </head>
+
+  <body>
+    <div class="mf-auth-shell">
+      <section class="mf-recovery-card">
+        <div class="mf-recovery-brand">
+          <a class="mf-brand" href="login.html">
+            <span class="mf-brand-mark">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 4C12 4 5 8 5 15c0 2.8 2.2 5 5 5 7 0 10-7 10-16Z" />
+                <path d="M5 19c2-4 5-7 10-9" />
+              </svg>
+            </span>
+            <span class="mf-brand-name">MacroFlow</span>
+          </a>
+        </div>
+
+        <div class="mf-kicker">Recuperação</div>
+
+        <h1 class="mf-title">Esqueceu sua senha?</h1>
+
+        <p class="mf-subtitle">
+          Informe o e-mail da sua conta. Enviaremos um link para você criar uma
+          nova senha.
+        </p>
+
+        <form
+          class="mf-form mf-recovery-form"
+          onsubmit="
+            enviarEmailRecuperacao();
+            return false;
+          "
+        >
+          <div class="mf-field">
+            <label for="email">E-mail</label>
+
+            <input
+              type="email"
+              id="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <button class="mf-btn mf-btn-primary" type="submit">
+            Enviar link de recuperação
+          </button>
+        </form>
+
+        <div class="card-footer mf-recovery-footer">
+          <a href="login.html">Voltar ao login</a>
+        </div>
+      </section>
+    </div>
+
+    <script src="../script/api.js"></script>
+    <script src="../script/recuperacao.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmar acesso · MacroFlow</title>
+    <link rel="stylesheet" href="../style/macroflow.css" />
+  </head>
+  <body>
+    <div class="mf-auth-shell">
+      <section class="mf-auth" style="max-width: 680px; display: block">
+        <section class="mf-auth-panel">
+          <div class="mf-brand" style="margin-bottom: 34px">
+            <span class="mf-brand-mark"
+              ><svg viewBox="0 0 24 24">
+                <path d="M20 4C12 4 5 8 5 15c0 2.8 2.2 5 5 5 7 0 10-7 10-16Z" />
+                <path d="M5 19c2-4 5-7 10-9" /></svg></span
+            ><span class="mf-brand-name">MacroFlow</span>
+          </div>
+          <div class="mf-kicker">Confirmação</div>
+          <h1 class="mf-title" style="font-size: 39px">Confirme seu acesso.</h1>
+          <p class="mf-subtitle">
+            Um código foi enviado para o e-mail usado no login. Digite-o abaixo
+            para continuar.
+          </p>
+          <form
+            class="mf-form"
+            style="margin-top: 24px"
+            onsubmit="validarLogin(event)"
+          >
+            <div class="mf-field">
+              <label for="codigo">Código</label
+              ><input
+                id="codigo"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                required
+              />
+            </div>
+            <button class="mf-btn mf-btn-primary" type="submit">
+              Confirmar código
+            </button>
+          </form>
+          <div class="card-footer" style="margin-top: 18px">
+            <a href="login.html">Voltar ao login</a>
+          </div>
+        </section>
+      </section>
+    </div>
+    <script src="../script/api.js"></script>
+    <script src="../script/auth.js"></script>
+  </body>
+</html>

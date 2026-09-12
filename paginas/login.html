@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar · MacroFlow</title>
+    <link rel="stylesheet" href="../style/macroflow.css" />
+  </head>
+  <body>
+    <div class="mf-auth-shell">
+      <section class="mf-auth">
+        <aside class="mf-auth-aside">
+          <div class="mf-kicker">MacroFlow</div>
+          <h1 class="mf-title" style="font-size: 48px">
+            Seu corpo não precisa virar uma planilha.
+          </h1>
+          <p class="mf-subtitle" style="color: rgba(49, 91, 65, 0.78)">
+            Uma experiência simples para acompanhar alimentação, composição
+            corporal e seu objetivo.
+          </p>
+          <div class="mf-stepper">
+            <div class="mf-step">
+              <span class="mf-step-num">1</span>
+              <div><strong>Entre</strong><span>Confirme seu acesso.</span></div>
+            </div>
+            <div class="mf-step">
+              <span class="mf-step-num">2</span>
+              <div>
+                <strong>Prepare seu perfil</strong
+                ><span>Complete o que o sistema precisa.</span>
+              </div>
+            </div>
+            <div class="mf-step">
+              <span class="mf-step-num">3</span>
+              <div>
+                <strong>Use o núcleo</strong
+                ><span>Escolha uma área e siga sua rotina.</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+        <section class="mf-auth-panel">
+          <div class="mf-brand" style="margin-bottom: 32px">
+            <span class="mf-brand-mark"
+              ><svg viewBox="0 0 24 24">
+                <path d="M20 4C12 4 5 8 5 15c0 2.8 2.2 5 5 5 7 0 10-7 10-16Z" />
+                <path d="M5 19c2-4 5-7 10-9" /></svg></span
+            ><span class="mf-brand-name">MacroFlow</span>
+          </div>
+          <div class="mf-kicker">Entrar</div>
+          <h2 class="mf-title" style="font-size: 36px">Bem-vindo de volta.</h2>
+          <p class="mf-note" style="margin: 10px 0 24px" id="mensagem">
+            Entre para continuar.
+          </p>
+          <form class="mf-form" onsubmit="logar(event)">
+            <div class="mf-field">
+              <label for="email">E-mail</label
+              ><input type="email" id="email" required />
+            </div>
+            <div class="mf-field">
+              <label for="senha">Senha</label
+              ><input type="password" id="senha" required />
+            </div>
+            <button class="mf-btn mf-btn-primary" type="submit">
+              Entrar
+              <svg viewBox="0 0 24 24">
+                <path d="M5 12h14" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </button>
+            <p class="mf-note" style="margin-top: 4px">
+              <a
+                style="color: var(--mf-forest); font-weight: 800"
+                href="recuperarConta.html"
+              >
+                Esqueceu sua senha?
+              </a>
+            </p>
+          </form>
+          <p class="mf-note" style="margin-top: 18px">
+            Ainda não tem conta?
+            <a
+              style="color: var(--mf-forest); font-weight: 800"
+              href="cadastro.html"
+              >Criar conta</a
+            >
+          </p>
+        </section>
+      </section>
+    </div>
+    <script src="../script/api.js"></script>
+    <script src="../script/auth.js"></script>
+  </body>
+</html>

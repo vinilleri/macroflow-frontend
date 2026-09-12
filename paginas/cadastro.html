@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar conta · MacroFlow</title>
+    <link rel="stylesheet" href="../style/macroflow.css" />
+  </head>
+  <body>
+    <div class="mf-auth-shell">
+      <section class="mf-auth">
+        <aside class="mf-auth-aside">
+          <div class="mf-kicker">Primeiro passo</div>
+          <h1 class="mf-title" style="font-size: 46px">Comece pelo básico.</h1>
+          <p class="mf-subtitle" style="color: rgba(49, 91, 65, 0.78)">
+            O restante da experiência é organizado depois do acesso.
+          </p>
+        </aside>
+        <section class="mf-auth-panel">
+          <a class="mf-brand" href="login.html"
+            ><span class="mf-brand-mark"
+              ><svg viewBox="0 0 24 24">
+                <path d="M20 4C12 4 5 8 5 15c0 2.8 2.2 5 5 5 7 0 10-7 10-16Z" />
+                <path d="M5 19c2-4 5-7 10-9" /></svg></span
+            ><span class="mf-brand-name">MacroFlow</span></a
+          >
+          <div style="height: 32px"></div>
+          <div class="mf-kicker">Criar conta</div>
+          <h2 class="mf-title" style="font-size: 36px">Vamos começar.</h2>
+          <form
+            class="mf-form"
+            style="margin-top: 22px"
+            onsubmit="salvarDados(event)"
+          >
+            <div class="mf-field">
+              <label for="nome">Nome</label
+              ><input type="text" id="nome" required />
+            </div>
+            <div class="mf-field">
+              <label for="email">E-mail</label
+              ><input type="email" id="email" required />
+            </div>
+            <div class="mf-field">
+              <label for="senha">Senha</label
+              ><input type="password" id="senha" required />
+            </div>
+            <div class="mf-password-rules">
+              <div id="senha-tamanho">❌ Pelo menos 8 caracteres</div>
+              <div id="senha-maiuscula">❌ Uma letra maiúscula</div>
+              <div id="senha-numero">❌ Um número</div>
+              <div id="senha-especial">❌ Um caractere especial</div>
+            </div>
+
+            <div class="mf-field">
+              <label for="atividadeFisica">Atividade física</label
+              ><select id="atividadeFisica"></select>
+            </div>
+            <button class="mf-btn mf-btn-primary" type="submit">
+              Criar conta
+            </button>
+          </form>
+          <p class="mf-note" style="margin-top: 18px">
+            Já tem conta?
+            <a
+              style="color: var(--mf-forest); font-weight: 800"
+              href="login.html"
+              >Entrar</a
+            >
+          </p>
+        </section>
+      </section>
+    </div>
+    <script src="../script/api.js"></script>
+    <script src="../script/usuario.js"></script>
+  </body>
+</html>

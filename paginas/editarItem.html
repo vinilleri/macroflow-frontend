@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajustar item · MacroFlow</title>
+    <link rel="stylesheet" href="../style/macroflow.css" />
+  </head>
+  <body>
+    <div class="mf-shell">
+      <div class="mf-frame">
+        <nav class="mf-topbar">
+          <a class="mf-brand" href="home.html"
+            ><span class="mf-brand-mark"
+              ><svg viewBox="0 0 24 24">
+                <path d="M20 4C12 4 5 8 5 15c0 2.8 2.2 5 5 5 7 0 10-7 10-16Z" />
+                <path d="M5 19c2-4 5-7 10-9" /></svg></span
+            ><span class="mf-brand-name">MacroFlow</span></a
+          >
+          <div class="mf-top-actions">
+            <a href="perfil.html">Perfil</a><a href="home.html">Núcleo</a>
+          </div>
+        </nav>
+        <nav class="mf-bottom-nav">
+          <a class="" href="home.html"
+            ><svg viewBox="0 0 24 24">
+              <path d="M20 4C12 4 5 8 5 15c0 2.8 2.2 5 5 5 7 0 10-7 10-16Z" />
+              <path d="M5 19c2-4 5-7 10-9" /></svg
+            ><span>Início</span></a
+          ><a class="active" href="comidas.html"
+            ><svg viewBox="0 0 24 24">
+              <path d="M6 4v7a3 3 0 0 0 3 3V4" />
+              <path d="M12 4v16" />
+              <path d="M16 4v16" />
+              <path d="M20 4v16" /></svg
+            ><span>Alimentação</span></a
+          ><a class="" href="meuCorpo.html"
+            ><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="4.5" r="2.3" />
+              <path d="M7.5 20c.6-5.2 1.4-8.9 4.5-8.9s3.9 3.7 4.5 8.9" />
+              <path d="M9 8.5c.8 1.2 1.8 1.8 3 1.8s2.2-.6 3-1.8" /></svg
+            ><span>Meu Corpo</span></a
+          ><a class="" href="chatbot.html"
+            ><svg viewBox="0 0 24 24">
+              <path
+                d="M8 17H6a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-4l-4 3v-3Z"
+              />
+              <path d="M8 10h.01M12 10h.01M16 10h.01" /></svg
+            ><span>IA</span></a
+          >
+        </nav>
+        <main>
+          <header class="mf-page-head">
+            <div>
+              <div class="mf-kicker">ALIMENTAÇÃO / RECEITAS</div>
+              <h1 class="mf-title">Ajustar item</h1>
+              <p class="mf-subtitle">
+                Corrija somente a quantidade e o valor associados a este item da
+                receita.
+              </p>
+            </div>
+          </header>
+          <section class="mf-card mf-card-pad" style="max-width: 680px">
+            <form class="mf-form" onsubmit="editarItem(event)">
+              <div class="mf-form-grid">
+                <div class="mf-field">
+                  <label for="quantidade">Quantidade</label
+                  ><input type="number" step="0.01" id="quantidade" required />
+                </div>
+                <div class="mf-field">
+                  <label for="valor">Valor</label
+                  ><input type="number" step="0.01" id="valor" required />
+                </div>
+              </div>
+              <div class="mf-form-actions">
+                <a class="mf-btn mf-btn-ghost" href="receitas.html">Cancelar</a
+                ><button class="mf-btn mf-btn-primary" type="submit">
+                  Salvar
+                </button>
+              </div>
+            </form>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../script/api.js"></script>
+    <script src="../script/receitaItem.js"></script>
+  </body>
+</html>
