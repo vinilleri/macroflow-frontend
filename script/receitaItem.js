@@ -82,7 +82,7 @@ async function adicionarItem(event) {
 
     if (response.ok) {
       alert("Item registrado com sucesso!");
-      irParaLista();
+      irParaEditar(receitaId);
     } else {
       alert("Erro ao registrar item.");
     }

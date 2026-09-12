@@ -1,79 +1,85 @@
 function consumoDia() {
-    fetch(`${API_URL}/consumo/soma/dia`, {
-        headers: getAuthHeaders()
+  fetch(`${API_URL}/consumo/soma/dia`, {
+    headers: getAuthHeaders(),
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      document.getElementById("caloriasDia").textContent = data.calorias;
+      document.getElementById("proteinasDia").textContent = data.proteinas;
+      document.getElementById("carboidratoDia").textContent = data.carboidrato;
+      document.getElementById("gorduraDia").textContent = data.gordura;
     })
-        .then(r => r.json())
-        .then(data => {
-            document.getElementById("caloriasDia").textContent = data.calorias;
-            document.getElementById("proteinasDia").textContent = data.proteinas;
-            document.getElementById("carboidratoDia").textContent = data.carboidrato;
-            document.getElementById("gorduraDia").textContent = data.gordura;
-        })
-        .catch(console.error);
+    .catch(console.error);
 }
 
 async function graficoPeriodo() {
-    const inicioRaw = document.getElementById("dataInicio").value;
-    const fimRaw = document.getElementById("dataFim").value;
+  const inicioRaw = document.getElementById("dataInicio").value;
+  const fimRaw = document.getElementById("dataFim").value;
 
-    const inicio = inicioRaw + "T00:00:00";
-    const fim = fimRaw + "T23:59:59";
+  const inicio = inicioRaw + "T00:00:00";
+  const fim = fimRaw + "T23:59:59";
 
-    const response = await fetch(
-        `${API_URL}/consumo/soma/periodo?inicio=${inicio}&fim=${fim}`,
+  const response = await fetch(
+    `${API_URL}/consumo/soma/periodo?inicio=${inicio}&fim=${fim}`,
+    {
+      headers: getAuthHeaders(),
+    },
+  );
+
+  const data = await response.json();
+
+  const canvas = document.getElementById("graficoPeriodo");
+  const graficoExistente = Chart.getChart(canvas);
+
+  if (graficoExistente) {
+    graficoExistente.destroy();
+  }
+
+  new Chart(canvas, {
+    type: "pie",
+    data: {
+      labels: ["Proteínas", "Carboidratos", "Gorduras"],
+      datasets: [
         {
-            headers: getAuthHeaders()
-        }
-    );
+          data: [data.proteinas, data.carboidrato, data.gordura],
+        },
+      ],
+    },
+  });
+}
+function abrirConsumo(id, origem, nome, valor, unidade) {
+  const tipo = origem === "SISTEMA" ? "COMIDA" : "COMIDA_USUARIO";
+
+  const params = new URLSearchParams({
+    id: id,
+    tipo: tipo,
+    nome: nome,
+    valor: valor,
+    unidade: unidade,
+  });
+
+  window.location.href = `novoConsumo.html?${params.toString()}`;
+}
+function consumirReceita(id, nome) {
+  const params = new URLSearchParams({
+    id: id,
+    tipo: "RECEITA",
+    nome: nome,
+  });
+
+  window.location.href = `novoConsumo.html?${params.toString()}`;
+}
+async function listarConsumosDia() {
+  try {
+    const response = await fetch(`${API_URL}/consumo/dia`, {
+      headers: getAuthHeaders(),
+    });
 
     const data = await response.json();
 
-    const canvas = document.getElementById("graficoPeriodo");
-    const graficoExistente = Chart.getChart(canvas);
+    const tabela = document.getElementById("consumosTable");
 
-    if (graficoExistente) {
-        graficoExistente.destroy();
-    }
-
-    new Chart(canvas, {
-        type: "pie",
-        data: {
-            labels: ["Proteínas", "Carboidratos", "Gorduras"],
-            datasets: [{
-                data: [
-                    data.proteinas,
-                    data.carboidrato,
-                    data.gordura
-                ],
-            }]
-        }
-    });
-}
-function abrirConsumo(id, origem, nome) {
-
-    const tipo =
-        origem === "SISTEMA"
-            ? "COMIDA"
-            : "COMIDA_USUARIO";
-
-    window.location.href =
-       `novoConsumo.html?id=${id}&tipo=${tipo}&nome=${nome}`;
-}
-function consumirReceita(id, nome) {
-    window.location.href =
-        `novoConsumo.html?id=${id}&tipo=RECEITA&nome=${nome}`;
-}
-async function listarConsumosDia() {
-    try {
-        const response = await fetch(`${API_URL}/consumo/dia`, {
-            headers: getAuthHeaders()
-        });
-
-        const data = await response.json();
-
-        const tabela = document.getElementById("consumosTable");
-
-        let linhas = `
+    let linhas = `
             <tr>
                 <th>Nome</th>
                 <th>Quantidade</th>
@@ -86,8 +92,8 @@ async function listarConsumosDia() {
             </tr>
         `;
 
-        data.forEach(consumo => {
-            linhas += `
+    data.forEach((consumo) => {
+      linhas += `
                 <tr>
                     <td>${consumo.nome}</td>
                     <td>${consumo.quantidade}</td>
@@ -103,91 +109,79 @@ async function listarConsumosDia() {
                     </td>
                 </tr>
             `;
-        });
+    });
 
-        tabela.innerHTML = linhas;
-
-    } catch (erro) {
-        console.error(erro);
-    }
+    tabela.innerHTML = linhas;
+  } catch (erro) {
+    console.error(erro);
+  }
 }
 
 async function deletarConsumo(id) {
+  if (!confirm("Deseja realmente deletar?")) {
+    return;
+  }
 
-    if (!confirm("Deseja realmente deletar?")) {
-        return;
+  try {
+    const response = await fetch(`${API_URL}/consumo/${id}`, {
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    });
+
+    if (response.ok) {
+      alert("Consumo deletado.");
+      listarConsumosDia();
+    } else {
+      alert("Erro ao deletar.");
     }
-
-    try {
-
-        const response = await fetch(`${API_URL}/consumo/${id}`, {
-            method: "DELETE",
-            headers: getAuthHeaders()
-        });
-
-        if (response.ok) {
-            alert("Consumo deletado.");
-            listarConsumosDia();
-        } else {
-            alert("Erro ao deletar.");
-        }
-
-    } catch (erro) {
-        console.error(erro);
-    }
+  } catch (erro) {
+    console.error(erro);
+  }
 }
 
 async function consumir(event) {
+  event.preventDefault();
 
-    event.preventDefault();
+  const dados = {
+    idReceitaOuComida: document.getElementById("idItem").value,
+    tipoConsumo: document.getElementById("tipo").value,
+    nome: document.getElementById("nome").value,
+    quantidade: document.getElementById("quantidade").value,
+    valor: document.getElementById("valor").value,
+  };
 
-    const dados = {
-        idReceitaOuComida: document.getElementById("idItem").value,
-        tipoConsumo: document.getElementById("tipo").value,
-        nome: document.getElementById("nome").value,
-        quantidade: document.getElementById("quantidade").value,
-        valor: document.getElementById("valor").value
-    };
+  try {
+    const response = await fetch(`${API_URL}/consumo`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+      body: JSON.stringify(dados),
+    });
 
-    try {
-
-        const response = await fetch(`${API_URL}/consumo`, {
-            method: "POST",
-            headers: getAuthHeaders(),
-            body: JSON.stringify(dados)
-        });
-
-        if (response.ok) {
-            alert("Consumo registrado.");
-            window.location.href =
-       `consumoDia.html`;
-
-        } else {
-            alert("Erro ao registrar.");
-        }
-
-    } catch (erro) {
-        console.error(erro);
+    if (response.ok) {
+      alert("Consumo registrado.");
+      window.location.href = `consumoDia.html`;
+    } else {
+      alert("Erro ao registrar.");
     }
+  } catch (erro) {
+    console.error(erro);
+  }
 }
 
 async function carregarConsumo() {
+  const id = new URLSearchParams(window.location.search).get("id");
 
-    const id = new URLSearchParams(window.location.search).get("id");
+  try {
+    const response = await fetch(`${API_URL}/consumo/${id}`, {
+      headers: getAuthHeaders(),
+    });
 
-    try {
+    const consumo = await response.json();
 
-        const response = await fetch(`${API_URL}/consumo/${id}`, {
-            headers: getAuthHeaders()
-        });
-
-        const consumo = await response.json();
-
-        document.getElementById("nome").value = consumo.nome;
-        document.getElementById("quantidade").value = consumo.quantidade;
-
-    } catch (erro) {
-        console.error(erro);
-        alert("Erro ao carregar consumo.");
-    }
+    document.getElementById("nome").value = consumo.nome;
+    document.getElementById("quantidade").value = consumo.quantidade;
+  } catch (erro) {
+    console.error(erro);
+    alert("Erro ao carregar consumo.");
+  }
 }

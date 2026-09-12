@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registrar consumo</title>
     <link rel="stylesheet" href="../style/macroflow.css" />
+    <link rel="icon" href="../img/icone.png" />
   </head>
   <body>
     <div class="mf-shell">
@@ -84,7 +85,7 @@
                     />
                   </div>
                   <div class="mf-field" id="campoValor">
-                    <label for="valor">Base (g/ml/unidade)</label
+                    <label for="valor" id="unidadeLabel"></label
                     ><input type="number" id="valor" step="0.01" />
                   </div>
                 </div>
@@ -126,6 +127,10 @@
         document.getElementById("idItem").value = p.get("id") || "";
         document.getElementById("tipo").value = p.get("tipo") || "";
         document.getElementById("nome").value = p.get("nome") || "";
+        document.getElementById("quantidade").value = p.get("quantidade") || "";
+        document.getElementById("valor").value = p.get("valor") || "";
+        document.getElementById("unidadeLabel").textContent =
+          p.get("unidade") || "";
         if (p.get("tipo") === "RECEITA")
           document.getElementById("campoValor").style.display = "none";
         document

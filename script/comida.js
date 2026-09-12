@@ -145,10 +145,10 @@ async function comidasRecomendadas() {
 
         if (comida.tipo === "COMIDA") {
           origem = "SISTEMA";
-          onclick = `abrirConsumo('${comida.id}', '${origem}', '${comida.nome}')`;
+          onclick = `abrirConsumo('${comida.id}', '${origem}', '${comida.nome}', 1, 'Base(g/ml/unidade)')`;
         } else if (comida.tipo === "COMIDA_USUARIO") {
           origem = "USUARIO";
-          onclick = `abrirConsumo('${comida.id}', '${origem}', '${comida.nome}')`;
+          onclick = `abrirConsumo('${comida.id}', '${origem}', '${comida.nome}', 1, 'Base(g/ml/unidade)')`;
         } else if (comida.tipo === "RECEITA") {
           onclick = `consumirReceita('${comida.id}', '${comida.nome}')`;
         }
@@ -285,7 +285,7 @@ async function listarComidas() {
                     <td>${comida.valor}</td>
                     <td>${unidadeData.sigla}</td>
                     <td>
-                        <button onclick="abrirConsumo('${comida.id}', '${comida.origem}', '${comida.nome}')">
+                        <button onclick="abrirConsumo('${comida.id}', '${comida.origem}', '${comida.nome}', ${comida.valor}, '${unidadeData.nome}')">
                             Consumir
                         </button>
 
