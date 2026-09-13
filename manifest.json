@@ -1,0 +1,27 @@
+{
+  "name": "MacroFlow",
+  "short_name": "MacroFlow",
+  "theme_color": "#315b41",
+  "background_color": "#6f9d72",
+  "display": "standalone",
+  "orientation": "any",
+  "start_url": "/paginas/home.html",
+  "scope": "/",
+  "lang": "pt-BR",
+  "dir": "auto",
+  "description": "Controle sua alimentação e evolução corporal.",
+  "icons": [
+    {
+      "src": "/img/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icone512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}

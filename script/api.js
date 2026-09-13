@@ -10,6 +10,18 @@ function getAuthHeaders() {
   }
   return headers;
 }
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/sw.js", { scope: "/" })
+      .then((registration) => {
+        console.log("Service Worker registrado com sucesso:", registration);
+      })
+      .catch((error) => {
+        console.log("Falha no registro:", error);
+      });
+  });
+}
 
 async function verificarLogin() {
   const token = localStorage.getItem("token");
@@ -55,6 +67,23 @@ async function verificarLogin() {
   }
 }
 
+function mudarCorFundo() {
+  document.body.classList.toggle("mf-dark");
+  localStorage.setItem(
+    "mf-theme",
+    document.body.classList.contains("mf-dark") ? "dark" : "light",
+  );
+}
+
+(function () {
+  if (localStorage.getItem("mf-theme") === "dark") {
+    document.body.classList.add("mf-dark");
+    document.addEventListener("DOMContentLoaded", function () {
+      var cb = document.getElementById("temaSwitch");
+      if (cb) cb.checked = true;
+    });
+  }
+})();
 async function verificarCompletude() {
   try {
     const response = await fetch(`${API_URL}/usuario/completude`, {
