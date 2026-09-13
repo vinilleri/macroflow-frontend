@@ -1,3 +1,7 @@
+let comidas = [];
+let paginaAtual = 1;
+let listaAtual = [];
+const comidasPorPagina = 10;
 async function unidades() {
   try {
     const response = await fetch(`${API_URL}/unidade`, {
@@ -174,6 +178,78 @@ async function irParaLista() {
   window.location.href = `comidas.html`;
 }
 
+async function renderizarComidas(lista) {
+  const table = document.getElementById("comidasTable");
+
+  let linhas = `
+            <tr>
+                <th>Ícone</th>
+                <th>Nome</th>
+                <th>Calorias</th>
+                <th>Proteínas</th>
+                <th>Carboidratos</th>
+                <th>Gorduras</th>
+                <th>Valor</th>
+                <th>Unidade</th>
+                <th>Ações</th>
+            </tr>
+        `;
+
+  for (const comida of lista) {
+    const responseUnidade = await fetch(
+      `${API_URL}/unidade/${comida.unidadeId}`,
+      {
+        headers: getAuthHeaders(),
+      },
+    );
+
+    const unidadeData = await responseUnidade.json();
+
+    const podeEditar = comida.origem === "USUARIO";
+    const imagem = imagensIcones[comida.icone.toUpperCase()] || "📦";
+    linhas += `
+                <tr>
+                     <td>${imagem}</td>
+                    <td>${comida.nome}</td>
+                    <td>${comida.calorias}</td>
+                    <td>${comida.proteinas}</td>
+                    <td>${comida.carboidrato}</td>
+                    <td>${comida.gordura}</td>
+                    <td>${comida.valor}</td>
+                    <td>${unidadeData.sigla}</td>
+                    <td>
+                        <button onclick="abrirConsumo('${comida.id}', '${comida.origem}', '${comida.nome}', ${comida.valor}, '${unidadeData.nome}')">
+                            Consumir
+                        </button>
+
+                        ${
+                          podeEditar
+                            ? `
+                            <button onclick="irParaEditar('${comida.id}', '${comida.origem}')">
+                                Editar
+                            </button>
+                            <button onclick="deletarComida('${comida.id}')">
+                                Deletar
+                            </button>
+                        `
+                            : ""
+                        }
+                    </td>
+                </tr>
+            `;
+  }
+
+  table.innerHTML = linhas;
+}
+
+function renderizarPaginacao(lista, paginaAtual) {
+  const inicio = (paginaAtual - 1) * comidasPorPagina;
+  const fim = inicio + comidasPorPagina;
+  const comidasPaginadas = lista.slice(inicio, fim);
+
+  renderizarBotoesPaginacao(lista);
+  renderizarComidas(comidasPaginadas);
+}
 async function editarComida(event) {
   event.preventDefault();
 
@@ -245,70 +321,61 @@ async function listarComidas() {
       headers: getAuthHeaders(),
     });
 
-    const data = await response.json();
-    const table = document.getElementById("comidasTable");
-
-    let linhas = `
-            <tr>
-                <th>Ícone</th>
-                <th>Nome</th>
-                <th>Calorias</th>
-                <th>Proteínas</th>
-                <th>Carboidratos</th>
-                <th>Gorduras</th>
-                <th>Valor</th>
-                <th>Unidade</th>
-                <th>Ações</th>
-            </tr>
-        `;
-
-    for (const comida of data) {
-      const responseUnidade = await fetch(
-        `${API_URL}/unidade/${comida.unidadeId}`,
-        {
-          headers: getAuthHeaders(),
-        },
-      );
-
-      const unidadeData = await responseUnidade.json();
-
-      const podeEditar = comida.origem === "USUARIO";
-      const imagem = imagensIcones[comida.icone.toUpperCase()] || "📦";
-      linhas += `
-                <tr>
-                     <td>${imagem}</td>
-                    <td>${comida.nome}</td>
-                    <td>${comida.calorias}</td>
-                    <td>${comida.proteinas}</td>
-                    <td>${comida.carboidrato}</td>
-                    <td>${comida.gordura}</td>
-                    <td>${comida.valor}</td>
-                    <td>${unidadeData.sigla}</td>
-                    <td>
-                        <button onclick="abrirConsumo('${comida.id}', '${comida.origem}', '${comida.nome}', ${comida.valor}, '${unidadeData.nome}')">
-                            Consumir
-                        </button>
-
-                        ${
-                          podeEditar
-                            ? `
-                            <button onclick="irParaEditar('${comida.id}', '${comida.origem}')">
-                                Editar
-                            </button>
-                            <button onclick="deletarComida('${comida.id}')">
-                                Deletar
-                            </button>
-                        `
-                            : ""
-                        }
-                    </td>
-                </tr>
-            `;
-    }
-
-    table.innerHTML = linhas;
+    comidas = await response.json();
+    comidas = comidas.sort((a, b) => a.nome.localeCompare(b.nome));
+    listaAtual = comidas;
+    renderizarPaginacao(listaAtual, paginaAtual);
   } catch (error) {
     console.error("Erro:", error);
     alert("Erro ao listar comidas.");
   }
+}
+function renderizarBotoesPaginacao(lista) {
+  const paginacao = document.getElementById("paginacao");
+
+  const totalPaginas = Math.max(1, Math.ceil(lista.length / comidasPorPagina));
+
+  const botaoAnterior = `
+    <button onclick="decrementarPagina()" ${paginaAtual === 1 ? "disabled" : ""}>
+      Anterior
+    </button>
+  `;
+
+  const pagina = `
+    <span>Página ${paginaAtual} de ${totalPaginas}</span>
+  `;
+
+  const botaoProximo = `
+    <button onclick="incrementarPagina()" ${
+      paginaAtual === totalPaginas ? "disabled" : ""
+    }>
+      Próximo
+    </button>
+  `;
+
+  paginacao.innerHTML = botaoAnterior + pagina + botaoProximo;
+}
+
+function incrementarPagina() {
+  const totalPaginas = Math.ceil(listaAtual.length / comidasPorPagina);
+  if (paginaAtual < totalPaginas) {
+    paginaAtual++;
+    renderizarPaginacao(listaAtual, paginaAtual);
+  }
+}
+
+function decrementarPagina() {
+  if (paginaAtual > 1) {
+    paginaAtual--;
+    renderizarPaginacao(listaAtual, paginaAtual);
+  }
+}
+function filtrarComidas() {
+  const pesquisa = document.getElementById("pesquisa").value.toLowerCase();
+
+  listaAtual = comidas
+    .filter((comida) => comida.nome.toLowerCase().startsWith(pesquisa))
+    .sort((a, b) => a.nome.localeCompare(b.nome));
+  paginaAtual = 1;
+  renderizarPaginacao(listaAtual, paginaAtual);
 }

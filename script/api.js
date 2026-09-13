@@ -20,7 +20,9 @@ async function verificarLogin() {
     !token &&
     !paginaAtual.includes("login.html") &&
     !paginaAtual.includes("codigoEmail.html") &&
-    !paginaAtual.includes("cadastro.html")
+    !paginaAtual.includes("cadastro.html") &&
+    !paginaAtual.includes("recuperarConta.html") &&
+    !paginaAtual.includes("recuperarSenha.html")
   ) {
     sessionStorage.setItem("mensagemLogin", "Faça login para continuar.");
 
@@ -36,7 +38,9 @@ async function verificarLogin() {
       response.status === 403 &&
       !paginaAtual.includes("login.html") &&
       !paginaAtual.includes("codigoEmail.html") &&
-      !paginaAtual.includes("cadastro.html")
+      !paginaAtual.includes("cadastro.html") &&
+      !paginaAtual.includes("recuperarConta.html") &&
+      !paginaAtual.includes("recuperarSenha.html")
     ) {
       sessionStorage.setItem(
         "mensagemLogin",

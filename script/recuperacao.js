@@ -13,7 +13,6 @@ async function enviarEmailRecuperacao() {
       throw new Error("Erro ao enviar email de recuperação.");
     }
     alert("Verifique seu email para redefinir sua senha.");
-    window.location.href = "login.html";
   } catch (error) {
     console.error("Erro ao enviar email de recuperação:", error);
     alert("Erro ao enviar email de recuperação.");
