@@ -45,6 +45,7 @@ async function salvarDados(event) {
       listarObjetivosAntigos();
       document.getElementById("dataFinal").value = "";
       document.getElementById("tipoObjetivo").value = "";
+      location.reload();
     } else {
       alert("Erro ao registrar objetivo.");
     }
@@ -91,6 +92,7 @@ async function editarObjetivo(event) {
       document.getElementById("tipoObjetivo").value = "";
       carregarObjetivoAtual();
       listarObjetivosAntigos();
+      location.reload();
     } else {
       alert("Erro ao editar objetivo.");
     }
@@ -122,6 +124,7 @@ async function desativarObjetivo() {
       objetivoAtualCache = null;
       carregarObjetivoAtual();
       listarObjetivosAntigos();
+      location.reload();
     } else {
       alert("Erro ao desativar objetivo.");
     }
