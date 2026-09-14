@@ -19,6 +19,13 @@ async function listarAtividadeFisica() {
 }
 listarAtividadeFisica();
 
+function mostrarSenha() {
+  const senhaInput = document.getElementById("senha");
+  const tipo =
+    senhaInput.getAttribute("type") === "password" ? "text" : "password";
+  senhaInput.setAttribute("type", tipo);
+}
+
 function validarSenha() {
   const senha = document.getElementById("senha").value;
 
@@ -49,8 +56,8 @@ function atualizarRegra(id, valido, texto) {
 async function salvarDados(event) {
   event.preventDefault();
 
-  const nome = document.getElementById("nome").value;
-  const email = document.getElementById("email").value;
+  const nome = document.getElementById("nome").value.trim();
+  const email = document.getElementById("email").value.trim();
   const senha = document.getElementById("senha").value;
   const atividadeFisica = document.getElementById("atividadeFisica").value;
 

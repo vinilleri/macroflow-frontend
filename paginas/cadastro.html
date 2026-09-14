@@ -35,15 +35,39 @@
               ><input type="email" id="email" required />
             </div>
             <div class="mf-field">
-              <label for="senha">Senha</label
-              ><input type="password" id="senha" required />
-            </div>
-            <div class="mf-password-rules">
-              <div id="senha-tamanho">❌ Pelo menos 8 caracteres</div>
-              <div id="senha-maiuscula">❌ Uma letra maiúscula</div>
-              <div id="senha-numero">❌ Um número</div>
-              <div id="senha-especial">❌ Um caractere especial</div>
-            </div>
+             <div class="mf-field">
+  <label for="senha">Senha</label>
+
+  <div class="mf-password-input">
+    <input type="password" id="senha" required />
+
+    <button type="button" id="toggleSenha" aria-label="Mostrar senha" onclick="mostrarSenha()">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M2 12C2 12 5.5 5 12 5C18.5 5 22 12 22 12C22 12 18.5 19 12 19C5.5 19 2 12 2 12Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="3"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="mf-password-rules">
+  <div id="senha-tamanho">❌ Pelo menos 8 caracteres</div>
+  <div id="senha-maiuscula">❌ Uma letra maiúscula</div>
+  <div id="senha-numero">❌ Um número</div>
+  <div id="senha-especial">❌ Um caractere especial</div>
+</div>
 
             <div class="mf-field">
               <label for="atividadeFisica">Atividade física</label

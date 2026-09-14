@@ -132,6 +132,7 @@ async function verificarCompletude() {
     if (
       falsos.length > 0 &&
       !window.location.pathname.includes("onboarding.html") &&
+      !window.location.pathname.includes("perfil.html") &&
       !window.location.pathname.includes("login.html") &&
       !window.location.pathname.includes("codigoEmail.html") &&
       !window.location.pathname.includes("cadastro.html") &&

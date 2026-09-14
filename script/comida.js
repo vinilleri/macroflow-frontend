@@ -68,7 +68,7 @@ icones();
 async function salvarDados(event) {
   event.preventDefault();
 
-  const nome = document.getElementById("nome").value;
+  const nome = document.getElementById("nome").value.trim();
   const calorias = document.getElementById("calorias").value;
   const proteinas = document.getElementById("proteinas").value;
   const carboidrato = document.getElementById("carboidrato").value;
@@ -254,7 +254,7 @@ async function editarComida(event) {
   event.preventDefault();
 
   const id = new URLSearchParams(window.location.search).get("id");
-  const nome = document.getElementById("nome").value;
+  const nome = document.getElementById("nome").value.trim();
   const calorias = document.getElementById("calorias").value;
   const proteinas = document.getElementById("proteinas").value;
   const carboidrato = document.getElementById("carboidrato").value;

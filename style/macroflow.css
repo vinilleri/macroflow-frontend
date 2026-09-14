@@ -2671,6 +2671,34 @@ td button:active {
 
   margin-bottom: 6px;
 }
+.mf-password-input {
+  position: relative;
+}
+
+.mf-password-input input {
+  width: 100%;
+  padding-right: 50px;
+}
+
+.mf-password-input button {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border: none;
+  background: none;
+  padding: 5px;
+  cursor: pointer;
+
+  color: #223123;
+}
+
+.mf-password-input svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
 
 .mf-password-rules div {
   position: relative;
